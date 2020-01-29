@@ -1,0 +1,105 @@
+/* --- Basic styles --- */
+
+* {
+    box-sizing: border-box; /* Elementen worden zo breed als gespecificeerd ongeacht padding */
+}
+
+body {
+    margin: 0; /* Haal witte rand van standaard browser op body weg */
+    font-family: sans-serif; /* standaard font */
+}
+
+.container { /* class gebruikt om herhaling van css te voorkomen */
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Header styles --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #18c1ee;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header div > a { /* > direct child selector, zodat alleen de top level link deze margin krijgt ipv alle links in de header */
+    margin-right: 2em;
+    position: relative;
+    top: 2em;
+}
+
+header a img {
+    max-width: 10em;
+}
+
+header form {
+    margin-left: auto;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+}
+
+header form label {
+    color: #787878;
+    padding: 1rem;
+}
+
+header form input {
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+header form input[type="text"] { /* [type="text"] selecteert alleen input met attribuut type value text */
+    border: 0;
+    background: #cecece;
+}
+
+header form input[type="submit"] { /* [type="submit"] selecteert alleen input met attribuut type value submit */
+    appearance: none; /* reset button styles */
+    background: none;
+    border: none;
+    transition: background .3s;
+    border-radius: 0 25px 25px 0;
+}
+
+header form input[type="submit"]:hover {
+    cursor: pointer; /* verander cursor in aanwijshandje */
+    background: #fe0;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+header nav li {
+    margin-right: 1em;
+}
+
+header nav a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+header nav a:hover {
+    color: #fe0;
+}
+
+/* --- Main styles --- */
+main {
+    padding-top: 15em;
+}
+
+main img {
+    max-width: 100%;
+}
