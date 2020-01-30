@@ -1,5 +1,6 @@
-/* --- Basic styles --- */
+/* Hi Joost, zoals eerder aangegeven heb ik bijles gehad van Folkert-Jan. Hij heeft me in de goede richting geholpen met grid, mediaqueries en javascript. */
 
+/* --- Basic styles --- */
 * {
     box-sizing: border-box; /* Elementen worden zo breed als gespecificeerd ongeacht padding */
 }
@@ -10,74 +11,43 @@ body {
 }
 
 .container { /* class gebruikt om herhaling van css te voorkomen */
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0 1em;
 }
 
 /* --- Header styles --- */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: fixed; /* laat de header altijd in beeld */
+    z-index: 100; /* altijd over alle andere elementen showen */
+    top: 0; /* fixed op de top van het scherm */
+    left: 0; /* fixed aan de linker kant van het scherm */
     width: 100%;
     background-color: #18c1ee;
+    height: 4em;
 }
 
 header div {
     display: flex;
-    align-items: center;
 }
 
 header div > a { /* > direct child selector, zodat alleen de top level link deze margin krijgt ipv alle links in de header */
     margin-right: 2em;
-    position: relative;
-    top: 2em;
+    position: relative; 
+    top: 3em; /* verplaats het logo naar beneden vanaf zijn normale positie */
 }
 
 header a img {
-    max-width: 10em;
+    max-width: 7.5em;
 }
 
-header form {
-    margin-left: auto;
-    background-color: white;
-    border-radius: 25px;
-    display: flex;
-}
-
-header form label {
-    color: #787878;
-    padding: 1rem;
-}
-
-header form input {
-    padding: 1rem;
-    font-size: 1rem;
-}
-
-header form input[type="text"] { /* [type="text"] selecteert alleen input met attribuut type value text */
-    border: 0;
-    background: #cecece;
-}
-
-header form input[type="submit"] { /* [type="submit"] selecteert alleen input met attribuut type value submit */
-    appearance: none; /* reset button styles */
-    background: none;
-    border: none;
-    transition: background .3s;
-    border-radius: 0 25px 25px 0;
-}
-
-header form input[type="submit"]:hover {
-    cursor: pointer; /* verander cursor in aanwijshandje */
-    background: #fe0;
+header nav {
+    position: absolute; /* zweef naar de linkerbovenhoek */
 }
 
 header nav ul {
     display: flex;
-    list-style: none;
+    list-style: none; /* haal bolletjes van de lijst weg */
     padding: 0;
+    
 }
 
 header nav li {
@@ -95,11 +65,287 @@ header nav a:hover {
     color: #fe0;
 }
 
+
+
 /* --- Main styles --- */
 main {
-    padding-top: 15em;
+    padding-top: 10em;
+    padding-bottom: 5em;
 }
 
-main img {
+main h1 {
+    max-width: 80%;
+    color: #222;
+    font-size: 2em;
+    display: inline; /* effect van tasty website: https://tasty.co/ heading */
+    background: #fe0; /* effect van tasty website: https://tasty.co/ heading */
+    box-shadow: 0.5em 0 0 #fe0, -0.5em 0 0 #fe0; /* effect van tasty website: https://tasty.co/ heading */
+}
+
+main h2 {
+    margin-top: 4em;
+    font-size: 1em;
+    color: #f43192;
+    text-transform: uppercase; /* maak alle letters hoofdletters */
+}
+
+main ul {
+    list-style: none;
+    padding: 0;
+    /* Bron grid: https://css-tricks.com/snippets/css/complete-guide-grid/ */
+    display: grid;
+    grid-gap: 2em 1em; /* ruimte tussen alle grid elementen 2em boven en onderkant, 1em links en rechts */
+    margin-bottom: 5em;
+}
+
+main .verborgen {
+    display: none;
+}
+
+main li > a { /* directe link in de list items van de main */
+    text-decoration: none; 
+}
+
+main li > a:hover h3 {
+    background: #fe0;
+}
+
+main li > a:hover img {
+    opacity: .5;
+}
+
+main article figure {
+    border-radius: 5px;
+    height: 10em;
+    margin: 0;
     max-width: 100%;
+    overflow: hidden; /* laat overvloeiende gedeeltes van afbeeldingen in figure niet zien */
+    margin-bottom: 1em;
+}
+
+main article img {
+    object-fit: cover; /* https://css-tricks.com/almanac/properties/o/object-fit/ >> om ervoor te zorgen dat elke afbeelding past binnen een vaste grootte ongeacht van de hoogte/breedte verhouding van de afbeelding */
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s;
+}
+
+main article figcaption { /* mag verborgen voor mensen zonder screenreader */
+    max-width: 0; 
+    opacity: 0;
+}
+
+main article h3 {
+    display: inline;
+    color: #222;
+    font-size: 1em;
+    transition: background .3s;
+}
+
+main button {
+    appearance: none; /* reset browser button styles */
+    border: none;
+    padding: 0.75em 1em;
+    border-radius: 5px;
+    background-color: #f43192;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer; /* maak cursor aanwijshandje */
+    transition: background .3s;
+}
+
+main button:hover {
+    background-color: #ff64c5;
+}
+
+main button.verborgen {
+    display: none;
+}
+
+
+/* --- Nieuwsbrief styles --- */
+section {
+    background-color: #18c1ee;
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+section h2 {
+    color: #222;
+    background-color: #fe0;
+    padding: .5em 1em;
+    display: inline-block;
+    margin: 0 auto 1em;
+}
+
+section form {
+    max-width: 50em;
+}
+
+section form label {
+    white-space: nowrap; /* voorkomt afbreking van tekst */
+    display: block;
+    background-color: white;
+    color: #787878;
+    padding: 1em;
+}
+
+section form input {
+    width: 100%;
+    display: block;
+    padding: 1em;
+    font-size: 1em;
+}
+
+section form input[type="email"] { /* [type="text"] selecteert alleen input met attribuut type value text */
+    border: 0;
+    background: #e9e9e9;
+}
+
+section form input[type="submit"] { /* [type="submit"] selecteert alleen input met attribuut type value submit */
+    appearance: none; /* reset button styles */
+    background: none;
+    border: none;
+    transition: background 0.3s;
+    background: #f43192;
+    color: white;
+    font-weight: bold;
+    border-radius: 0 0px 5px 5px;
+    padding: 1em 1.5em;
+    width: 100%;
+}
+
+section form input[type="submit"]:hover {
+    cursor: pointer; /* verander cursor in aanwijshandje */
+    background: #ff64c5;
+}
+
+
+
+
+/* --- Footer styles --- */
+footer {
+    background-color: #222;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+footer div {
+    display: flex;
+    justify-content: space-between; /* maximale ruimte nemen tussen alle elementen */
+}
+
+footer a {
+    color: #cecece;
+    text-decoration: none;
+}
+
+footer p {
+    font-size: 0.875em;
+}
+
+footer p span {
+    font-weight: bold;
+}
+
+footer img {
+    max-width: 5em;
+}
+
+footer ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    text-align: right;
+}
+
+
+
+/* --- Responsive styles --- */
+/* Bron artikel media queries: https://css-tricks.com/css-media-queries/ */
+@media screen and (min-width: 50em) { /* vanaf 50 * 16px schermbreedte, voer onderstaand uit */
+    .container {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    header {
+        height: auto;
+    }
+    
+    header div {
+        align-items: center;
+    }
+    
+    header a img {
+        max-width: 15em;
+    }
+    
+    header nav {
+        position: relative;
+    }
+    
+    main {
+        padding-top: 15em;
+        padding-bottom: 7.5em;
+    }
+    
+    main h1 {
+        font-size: 3em;
+    }
+    
+    main ul {
+        /* Bron grid: https://css-tricks.com/snippets/css/complete-guide-grid/ */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        grid-gap: 2em 1em;
+        /* 
+        repeat wil aantal columns & hun breedte: in dit geval, 2 columns verdeeld over alle ruimte (1fr is alle mogelijke ruimte pakken afhankelijk van aantal columns) 
+        grid-template-columns verteld het grid hoe zijn columns eruit gaan zien. (in dit geval, 2 columns per row)
+        */
+    }
+    
+    main article figure {
+        height: 15em;
+    }
+    
+    main article h3 { 
+        font-size: 1.25em;
+    }
+    
+    main button {
+        font-size: 1.25em;
+    }
+    
+    section form {
+        display: flex;
+    }
+    
+    section form input[type="submit"] {
+        border-radius: 0 5px 5px 0;
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 70em) { /* vanaf 70 * 16px schermbreedte, voer onderstaand uit */
+    main h1 {
+        font-size: 4em;
+    }
+    
+    main ul {
+        /* Bron grid: https://css-tricks.com/snippets/css/complete-guide-grid/ */
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2em 1em;
+    }
 }
